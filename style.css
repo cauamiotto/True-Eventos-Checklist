@@ -1,0 +1,379 @@
+/*
+  Estilos avançados para o aplicativo TRUE EVENTOS.  
+  Design inspirado em microsaaS modernos: tema escuro com tons de roxo e azul, 
+  cards com sombra, botões diferenciados e elementos responsivos.
+*/
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  /* O fundo e a cor do texto são definidos por variáveis para suportar modos claro/escuro */
+  background: var(--background-gradient);
+  color: var(--text);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* Variáveis de tema
+   As variáveis definidas em :root representam o modo claro por padrão. O modo escuro
+   utiliza a pseudo-classe [data-theme="dark"] abaixo para sobrescrever. */
+:root {
+  /* Cores principais (personalizáveis via JS) */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #3b82f6;
+  --secondary-hover: #2563eb;
+  --tertiary: #60a5fa;
+  --tertiary-hover: #93c5fd;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  /* Variáveis de plano de fundo e texto para modo claro */
+  --background-gradient: linear-gradient(to bottom right, #f6f7fb, #eef1f8);
+  --card-bg: #ffffff;
+  --card-hover: #f3f4f6;
+  --border: #e5e7eb;
+  --text: #0b1b35;
+  --muted: #6b7280;
+}
+
+/* Modo escuro */
+[data-theme="dark"] {
+  --background-gradient: linear-gradient(to bottom right, #0a0f28, #121f45);
+  --card-bg: #1f2a48;
+  --card-hover: #25335d;
+  --border: #2e3b5c;
+  --text: #dce3f3;
+  --muted: #8da1c9;
+}
+
+/* Cabeçalho
+   Utiliza fundo branco com sombra suave, aproximando-se da estética de um
+   aplicativo nativo. O logotipo e título usam a cor principal para reforçar a
+   identidade da marca. O botão de instalação será apresentado em um banner
+   inferior, por isso removemos estilos específicos aqui. */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  /* O cabeçalho usa a cor de fundo do card para manter consistência entre temas */
+  background-color: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+}
+
+.app-titles h1 {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.125rem;
+}
+
+/* Banner de instalação fixado ao fundo da tela */
+.install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+}
+
+.install-banner.hidden {
+  display: none !important;
+}
+
+.install-banner .message {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.install-banner button {
+  margin-left: 0.75rem;
+}
+
+/* Seção de controles
+   Organizada em coluna para preencher a largura total em dispositivos móveis. */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.event-selector label {
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.event-selector select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  width: 100%;
+  appearance: none;
+  font-size: 1rem;
+}
+
+/* Estilo base dos botões
+   Botões em formato de pílula com maior área de toque. */
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: #fff;
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+.btn-tertiary {
+  background-color: var(--tertiary);
+  color: #fff;
+}
+.btn-tertiary:hover {
+  background-color: var(--tertiary-hover);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: #ffffff;
+}
+.btn-danger:hover {
+  background-color: var(--danger-hover);
+}
+
+/* Título de seção */
+.section-title {
+  font-size: 1.2rem;
+  margin: 0 1rem 0.75rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Cartões de item */
+.item-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background-color 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.item-card:hover {
+  background-color: var(--card-hover);
+}
+
+.item-card-defective {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: var(--danger);
+}
+
+.item-card .name {
+  flex: 1;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.item-card .status-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.item-card .status-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-right: 0.75rem;
+}
+
+.item-card input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.item-card .actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Formulário de adicionar item */
+.add-item-form {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 1rem 2rem;
+}
+
+.add-item-form input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Modal de categorias */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Se modal tiver classe hidden, forçar display none */
+.modal.hidden {
+  display: none !important;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 380px;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: var(--text);
+}
+
+.modal-content h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+/* Ações do modal (para botões salvar/cancelar) */
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.category-row {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-hover);
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  gap: 0.6rem;
+}
+
+.category-row .category-name {
+  flex: 1;
+}
+
+.category-row .cat-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.add-category-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-category-form input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--card-hover);
+  color: var(--text);
+}

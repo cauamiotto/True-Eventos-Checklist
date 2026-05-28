@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRUE EVENTOS – Checklist de Equipamentos</title>
+  <!-- Manifesto para tornar o aplicativo instalável como PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <!-- A cor inicial do tema será atualizada dinamicamente com a escolha do usuário -->
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="stylesheet" href="style.css" />
+  <!--
+    Este aplicativo é um checklist avançado para a empresa TRUE EVENTOS.  
+    Ele permite organizar os equipamentos necessários para cada tipo de evento,  
+    marcar se os itens estão carregados ou com defeito e adicionar/remover itens e categorias.
+    Os dados são salvos localmente no navegador usando localStorage.
+  -->
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-area">
+      <img src="icons/icon-192.png" alt="TRUE Eventos logo" class="logo" />
+      <div class="app-titles">
+        <h1>TRUE EVENTOS</h1>
+        <p class="subtitle">Checklist inteligente</p>
+      </div>
+    </div>
+    <!-- Removido: o botão de instalação foi movido para um banner inferior -->
+  </header>
+  <main>
+    <section class="controls">
+      <div class="event-selector">
+        <label for="eventType">Tipo de evento:</label>
+        <select id="eventType"></select>
+        <button id="addEventTypeBtn" class="btn-secondary">Adicionar tipo</button>
+        <button id="manageCategoriesBtn" class="btn-secondary">Gerenciar categorias</button>
+        <button id="resetDataBtn" class="btn-tertiary">Resetar dados</button>
+        <button id="openThemeModalBtn" class="btn-tertiary">Personalizar tema</button>
+      </div>
+    </section>
+    <section id="itemsSection" class="items-section hidden">
+      <h3 id="currentEventTitle" class="section-title"></h3>
+      <!-- Lista de itens (cards) -->
+      <div id="itemsList"></div>
+      <div class="add-item-form">
+        <input type="text" id="newItemName" placeholder="Novo equipamento" />
+        <button id="addItemBtn" class="btn-primary">Adicionar item</button>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Dados são salvos automaticamente no seu dispositivo.</p>
+  </footer>
+
+  <!-- Modal para gerenciamento de categorias -->
+  <div id="categoriesModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Gerenciar Categorias</h2>
+      <div id="categoriesList" class="categories-list"></div>
+      <div class="add-category-form">
+        <input type="text" id="newCategoryName" placeholder="Nova categoria" />
+        <button id="saveNewCategoryBtn" class="btn-primary">Adicionar categoria</button>
+      </div>
+      <button id="closeCategoriesModal" class="btn-tertiary">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Banner de instalação (PWA) -->
+  <div id="installBanner" class="install-banner hidden">
+    <span class="message">Instale o aplicativo para acessar rapidamente o checklist.</span>
+    <button id="installBannerBtn" class="btn-primary">Instalar</button>
+    <button id="closeBannerBtn" class="btn-tertiary">Fechar</button>
+  </div>
+
+  <!-- Modal de personalização de tema -->
+  <div id="themeModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Personalizar Tema</h2>
+      <!-- Ações são exibidas antes do seletor de cor para evitar que o pop-up do seletor
+           cubra os botões de salvar/cancelar -->
+      <div class="modal-actions" style="margin-bottom: 1rem; display: flex; gap: 0.5rem; justify-content: flex-end;">
+        <button id="saveThemeBtn" class="btn-primary">Salvar</button>
+        <button id="closeThemeModal" class="btn-tertiary">Cancelar</button>
+      </div>
+      <label for="themeColorPicker">Cor de destaque:</label>
+      <input type="color" id="themeColorPicker" />
+      <div class="theme-mode-select" style="margin-top: 1rem; display:flex; flex-direction: column; gap: 0.5rem;">
+        <label for="themeModeSelect">Modo:</label>
+        <select id="themeModeSelect">
+          <option value="light">Claro</option>
+          <option value="dark">Escuro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
